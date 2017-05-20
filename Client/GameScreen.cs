@@ -16,14 +16,14 @@ using VideoPaintballCommon.Net;
 
 namespace VideoPaintballClient
 {
-    public class GameEngine : System.Windows.Forms.Form
+    public class GameScreen : System.Windows.Forms.Form
     {
         private System.ComponentModel.IContainer components = null;
         private Map _map = null;
         private ServerCommunicator _serverCommunicator;
         private string _playerAction;
 
-        public GameEngine(TcpClient serverConnection)
+        public GameScreen(TcpClient serverConnection)
         {
             InitializeComponent();
 

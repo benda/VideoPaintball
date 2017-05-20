@@ -46,17 +46,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game.cs" />
+    <Compile Include="GameRunner.cs" />
     <Compile Include="GameConfiguration.cs" />
     <Compile Include="Lobby.cs" />
     <Compile Include="Net\NetScanning\NetScanPingCompletedEventArgs.cs" />
     <Compile Include="PlayerJoinedEventArgs.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Screens\GameConfigurationScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Screens\GameConfigurationScreen.Designer.cs">
       <DependentUpon>GameConfigurationScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameEngine.cs">
+    <Compile Include="GameScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Net\NetScanning\NetScan.cs">
