@@ -1,0 +1,80 @@
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+using VideoPaintballClient.Screens;
+
+namespace VideoPaintballClient
+{
+ 
+    static class Game
+    {
+        /// <summary>
+        /// Shows the splash screen and runs the actual game
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.EnableVisualStyles();
+       
+            SplashScreen splashScreen = null;
+            GameConfigurationScreen gameConfigurationScreen = null;
+            LobbyScreen lobbyScreen = null;
+            System.Net.Sockets.TcpClient serverConnection = null;
+			GameEngine engine = null;
+            
+			try
+			{
+                splashScreen = new SplashScreen();
+                splashScreen.ShowDialog();
+                splashScreen.Close();
+                splashScreen.Dispose();
+
+                gameConfigurationScreen = new GameConfigurationScreen();
+                gameConfigurationScreen.ShowDialog();
+                serverConnection = gameConfigurationScreen.ServerConnection;
+                string serverIPAddress = gameConfigurationScreen.ServerIPAddress;
+                bool thisClientIsServer = gameConfigurationScreen.ThisClientIsServer;
+                gameConfigurationScreen.Close();
+                gameConfigurationScreen.Dispose();
+
+                lobbyScreen = new LobbyScreen(serverConnection, serverIPAddress, thisClientIsServer);
+                lobbyScreen.ShowDialog();
+                lobbyScreen.Close();
+                lobbyScreen.Dispose();
+
+				engine = new GameEngine(serverConnection);
+                Application.Run(engine);
+			}
+			finally
+			{
+				if(splashScreen != null)
+				{
+					splashScreen.Dispose();
+				}
+
+                if (gameConfigurationScreen != null)
+                {
+                    gameConfigurationScreen.Dispose();
+                }
+
+                if (lobbyScreen != null)
+                {
+                    lobbyScreen.Dispose();
+                }
+
+                if (serverConnection != null)
+                {
+                    serverConnection.GetStream().Close();
+                    serverConnection.Close();
+                }
+
+				if(engine != null)
+				{
+					engine.Dispose();
+				}
+			}
+		}
+        }
+    }

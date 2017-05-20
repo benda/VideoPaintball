@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2006-12-01T18:16:08.023161Z"
+   url="http://svn4.cvsdude.com/vbjay105/VideoPaintball/Common"
+   last-author="vbjay105"
+   kind="dir"
+   repos="http://svn4.cvsdude.com/vbjay105/VideoPaintball"
+   revision="1"/>
+<entry
+   committed-rev="1"
+   name="Common.csproj.user"
+   text-time="2006-11-27T00:55:17.473016Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="eb65d78f32985a400265544171e9244e"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   name="VPP"
+   kind="dir"/>
+<entry
+   name="Net"
+   kind="dir"/>
+<entry
+   committed-rev="1"
+   name="Common.csproj"
+   text-time="2006-11-27T02:39:31.756233Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="f9ba0198897b2e8495308cf1ac656f56"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   name="MapObjects"
+   kind="dir"/>
+<entry
+   committed-rev="3"
+   name="MapLoader.cs"
+   text-time="2006-12-01T20:36:49.399398Z"
+   committed-date="2006-12-01T23:55:39.138440Z"
+   checksum="193cdd3803c3a42c8d1336052569dbb3"
+   last-author="vbjay105"
+   kind="file"
+   revision="3"/>
+<entry
+   name="bin"
+   kind="dir"
+   deleted="true"/>
+<entry
+   name="obj"
+   kind="dir"
+   deleted="true"/>
+<entry
+   name="Detectors"
+   kind="dir"/>
+<entry
+   name="Properties"
+   kind="dir"/>
+<entry
+   name="Util"
+   kind="dir"/>
+<entry
+   committed-rev="3"
+   name="MapParser.cs"
+   text-time="2006-12-01T20:41:02.384041Z"
+   committed-date="2006-12-01T23:55:39.138440Z"
+   checksum="f69756da88e80afa17bd3573025012d4"
+   last-author="vbjay105"
+   kind="file"
+   revision="3"/>
+<entry
+   committed-rev="1"
+   name="PlayerAction.cs"
+   text-time="2006-11-20T23:26:36.956721Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="1c79b70e209055ad86232b049704cd7d"
+   last-author="vbjay105"
+   kind="file"/>
+</wc-entries>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2006-12-01T18:16:08.023161Z"
+   url="http://svn4.cvsdude.com/vbjay105/VideoPaintball/Server/Properties"
+   last-author="vbjay105"
+   kind="dir"
+   repos="http://svn4.cvsdude.com/vbjay105/VideoPaintball"
+   revision="1"/>
+<entry
+   committed-rev="1"
+   name="AssemblyInfo.cs"
+   text-time="2006-11-03T20:50:05.006361Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="ff219bffe5619708c2a6bd7ea350b68a"
+   last-author="vbjay105"
+   kind="file"/>
+</wc-entries>

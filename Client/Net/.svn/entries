@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2006-12-01T18:16:08.023161Z"
+   url="http://svn4.cvsdude.com/vbjay105/VideoPaintball/Client/Net"
+   last-author="vbjay105"
+   kind="dir"
+   repos="http://svn4.cvsdude.com/vbjay105/VideoPaintball"
+   revision="1"/>
+<entry
+   committed-rev="1"
+   name="ServerConnector.cs"
+   text-time="2006-11-17T03:52:57.057902Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="ac444bb9b0a472d0dbdf51c259df480c"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   name="NetScanning"
+   kind="dir"/>
+<entry
+   committed-rev="1"
+   name="ServerCommunicator.cs"
+   text-time="2006-11-16T04:34:02.904241Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="71799207ad1314cc7afc5af069d9c2b2"
+   last-author="vbjay105"
+   kind="file"/>
+</wc-entries>

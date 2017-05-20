@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2006-12-01T18:16:08.023161Z"
+   url="http://svn4.cvsdude.com/vbjay105/VideoPaintball/Server"
+   last-author="vbjay105"
+   kind="dir"
+   repos="http://svn4.cvsdude.com/vbjay105/VideoPaintball"
+   revision="1"/>
+<entry
+   committed-rev="1"
+   name="Server.csproj.user"
+   text-time="2006-11-19T04:15:26.091865Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="7fbff98b64d947ecb8664144197fcc02"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="App.config"
+   text-time="2006-11-08T17:30:07.742832Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="eacc7ca1138f504d6f94146a5528da59"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="Server.csproj"
+   text-time="2006-11-27T00:51:29.114652Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="752d1a44b0bd7d19686bc0a0a736f4c8"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   name="bin"
+   kind="dir"
+   deleted="true"/>
+<entry
+   committed-rev="3"
+   name="Server.cs"
+   text-time="2006-12-01T21:15:21.080169Z"
+   committed-date="2006-12-01T23:55:39.138440Z"
+   checksum="05f8071b4a90c019ee5ef6089855c557"
+   last-author="vbjay105"
+   kind="file"
+   revision="3"/>
+<entry
+   name="obj"
+   kind="dir"
+   deleted="true"/>
+<entry
+   committed-rev="1"
+   name="Program.cs"
+   text-time="2006-11-09T18:16:41.562345Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="7db31beb0c34b9fbeb10e64870b61785"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   name="Properties"
+   kind="dir"/>
+<entry
+   name="Util"
+   kind="dir"/>
+</wc-entries>

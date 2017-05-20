@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2006-12-01T18:16:08.023161Z"
+   url="http://svn4.cvsdude.com/vbjay105/VideoPaintball/Maps"
+   last-author="vbjay105"
+   kind="dir"
+   repos="http://svn4.cvsdude.com/vbjay105/VideoPaintball"
+   revision="1"/>
+<entry
+   committed-rev="1"
+   name="2.txt"
+   text-time="2006-11-19T05:10:42.871160Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="ab6d3d430f7b5ca90279abc077054bc3"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="3.txt"
+   text-time="2006-11-19T05:10:51.393414Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="1b954ceb88fdb884399b41fd9ac5e147"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="1.txt"
+   text-time="2006-11-19T05:10:29.612094Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="810a854e1980b39c13ac946ca436f698"
+   last-author="vbjay105"
+   kind="file"/>
+</wc-entries>

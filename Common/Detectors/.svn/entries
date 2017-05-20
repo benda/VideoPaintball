@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2006-12-01T18:16:08.023161Z"
+   url="http://svn4.cvsdude.com/vbjay105/VideoPaintball/Common/Detectors"
+   last-author="vbjay105"
+   kind="dir"
+   repos="http://svn4.cvsdude.com/vbjay105/VideoPaintball"
+   revision="1"/>
+<entry
+   committed-rev="3"
+   name="OffscreenDetector.cs"
+   text-time="2006-12-01T21:24:52.501152Z"
+   committed-date="2006-12-01T23:55:39.138440Z"
+   checksum="689a7dd1983e184f9eeba3e9b1a41265"
+   last-author="vbjay105"
+   kind="file"
+   revision="3"/>
+<entry
+   committed-rev="3"
+   name="CollisionDetector.cs"
+   text-time="2006-12-01T21:18:35.227225Z"
+   committed-date="2006-12-01T23:55:39.138440Z"
+   checksum="ee0f31a83961b2ed2637a97a35bf042e"
+   last-author="vbjay105"
+   kind="file"
+   revision="3"/>
+</wc-entries>

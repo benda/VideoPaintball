@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2006-12-01T18:16:08.023161Z"
+   url="http://svn4.cvsdude.com/vbjay105/VideoPaintball/Server/Util"
+   last-author="vbjay105"
+   kind="dir"
+   repos="http://svn4.cvsdude.com/vbjay105/VideoPaintball"
+   revision="1"/>
+<entry
+   committed-rev="1"
+   name="ErrorUtil.cs"
+   text-time="2006-11-16T17:31:29.736507Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="cbe628bcb0e334587bb1228d91b8a972"
+   last-author="vbjay105"
+   kind="file"/>
+</wc-entries>

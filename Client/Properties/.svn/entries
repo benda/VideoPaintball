@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2006-12-01T18:16:08.023161Z"
+   url="http://svn4.cvsdude.com/vbjay105/VideoPaintball/Client/Properties"
+   last-author="vbjay105"
+   kind="dir"
+   repos="http://svn4.cvsdude.com/vbjay105/VideoPaintball"
+   revision="1"/>
+<entry
+   committed-rev="1"
+   name="AssemblyInfo.cs"
+   text-time="2006-11-03T20:50:29.201152Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="67dcf26594a811d7ab3f1e59ff505857"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="Settings.settings"
+   text-time="2006-11-03T20:50:29.231195Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="8c0f00d7d9b0046695a0255f1b11b061"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="Settings.Designer.cs"
+   text-time="2006-11-16T00:27:35.731331Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="6da839eec9a592efe24ea964c0d24850"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="Resources.resx"
+   text-time="2006-11-03T20:50:29.221180Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="0cd8c971317d19bbed44757809bcb92b"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="Resources.Designer.cs"
+   text-time="2006-11-16T00:27:33.337889Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="1b5d282a5b3d1eca8bde64d82c634f03"
+   last-author="vbjay105"
+   kind="file"/>
+</wc-entries>

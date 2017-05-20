@@ -1,0 +1,67 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{68C59B01-0A02-4298-8E2E-A0F0ECA57BAE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VideoPaintballCommon</RootNamespace>
+    <AssemblyName>VideoPaintballCommon</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Detectors\CollisionDetector.cs" />
+    <Compile Include="Detectors\OffscreenDetector.cs" />
+    <Compile Include="MapLoader.cs" />
+    <Compile Include="MapObjects\AIPlayer.cs" />
+    <Compile Include="MapObjects\Berry.cs" />
+    <Compile Include="MapObjects\IMovable.cs" />
+    <Compile Include="MapObjects\IRenderable.cs" />
+    <Compile Include="MapObjects\Map.cs" />
+    <Compile Include="MapObjects\MapObject.cs" />
+    <Compile Include="MapObjects\Obstacle.cs" />
+    <Compile Include="MapObjects\Paintball.cs" />
+    <Compile Include="MapObjects\Player.cs" />
+    <Compile Include="MapObjects\Shield.cs" />
+    <Compile Include="MapParser.cs" />
+    <Compile Include="Net\NetworkCommunicator.cs" />
+    <Compile Include="PlayerAction.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\DimensionsUtil.cs" />
+    <Compile Include="Util\MeterUtil.cs" />
+    <Compile Include="VPP\FacingDirectionConversion.cs" />
+    <Compile Include="VPP\MessageConstants.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,162 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using System.Net.Sockets;
+using System.Threading;
+
+using VideoPaintballCommon.Net;
+using VideoPaintballCommon.VPP;
+using VideoPaintballClient.Net;
+
+namespace VideoPaintballClient.Screens
+{
+    public partial class LobbyScreen : Form
+    {
+        private Thread _playerListLoadThread = null;
+        private NetworkCommunicator _networkCommunicator;
+        private event EventHandler<PlayerJoinedEventArgs> PlayerJoined;
+        private event EventHandler GameStarting;
+
+        public LobbyScreen(TcpClient serverConnection, string serverIPAddress, bool thisClientIsServer)
+        {
+            InitializeComponent();
+            if (string.IsNullOrEmpty(serverIPAddress))
+            {
+                serverLabel.Text += "You are the server";
+            }
+            else
+            {
+                serverLabel.Text += serverIPAddress;
+            }
+
+           startGameButton.Visible = startGameButton.Enabled = thisClientIsServer;
+            this.NetworkCommunications = new NetworkCommunicator(serverConnection);
+            this.PlayerJoined += new EventHandler<PlayerJoinedEventArgs>(LobbyScreen_PlayerJoined);
+            this.GameStarting += new EventHandler(LobbyScreen_GameStarting);
+        }
+
+        void LobbyScreen_GameStarting(object sender, EventArgs e)
+        {
+            //_playerListLoadThread.Join();
+            _playerListLoadThread.Abort();
+            while (_playerListLoadThread.ThreadState != ThreadState.Stopped)
+            {
+                Thread.Sleep(1000);
+            }
+
+            Thread.Sleep(5000);
+            this.Hide();
+        }
+
+        void LobbyScreen_PlayerJoined(object sender, PlayerJoinedEventArgs e)
+        {
+             playerListBox.Items.Add(e.PlayerIPAddress);
+        }
+
+       
+       private void LobbyScreen_Load(object sender, System.EventArgs e)
+       {
+           //this is necessary, otherwise the form would never load
+           _playerListLoadThread = new Thread(new ThreadStart(WaitInLobby));
+           _playerListLoadThread.Name = "VPPlayerListLoadThread";
+           _playerListLoadThread.IsBackground = true;
+           _playerListLoadThread.Start();
+      }
+
+        private void WaitInLobby()
+        {
+            string data = string.Empty;
+            bool continueToLoop = true;
+            while ( continueToLoop )
+            {
+                data = NetworkCommunications.ReceiveData();
+                if (data.Contains("PlayerJoined"))
+                {
+                    try
+                    {
+                        data = data.Substring(data.IndexOf(":") + 1);
+                        this.Invoke(new RaisePlayerJoinedHandler(RaisePlayerJoined), new object[] { data });
+                    
+                    }
+                    catch (InvalidOperationException)
+                    {
+
+                    }
+                }
+                else if (data.Contains(MessageConstants.GameStarting))
+                {
+                    continueToLoop = false;
+                    this.Invoke(new RaiseGameStartingHandler(RaiseGameStarting));
+                }
+                else if (data == MessageConstants.ServerAvailable)
+                {
+                    NetworkCommunications.SendData(MessageConstants.JoinGame);  
+                }
+
+                System.Threading.Thread.Sleep(1000);
+            }
+
+            return;
+        }
+
+        
+
+
+        private void startGameButton_Click(object sender, EventArgs e)
+        {
+            startGameButton.Enabled = startGameButton.Visible = false;
+            StartGame();
+        }
+
+        private void StartGame()
+        {
+            NetworkCommunications.SendData( MessageConstants.StartGame);
+        }
+
+
+        private delegate void RaiseGameStartingHandler();
+        private void RaiseGameStarting()
+        {
+            GameStarting(this, new EventArgs());
+        }
+
+        private delegate void RaisePlayerJoinedHandler(string playerIPAddress);
+        private void RaisePlayerJoined(string playerIPAddress)
+        {
+            PlayerJoinedEventArgs ev = new PlayerJoinedEventArgs();
+            ev.PlayerIPAddress = playerIPAddress;
+            PlayerJoined(this, ev);
+        }
+
+
+
+
+       public NetworkCommunicator NetworkCommunications
+       {
+            get { return _networkCommunicator; }
+            set { _networkCommunicator = value; }
+       }
+
+
+        private class PlayerJoinedEventArgs : EventArgs
+        {
+            private string _playerIPAddress;
+
+            public PlayerJoinedEventArgs()
+            {
+
+            }
+
+            public string PlayerIPAddress
+            {
+                get { return _playerIPAddress; }
+                set { _playerIPAddress = value; }
+            }
+        }
+
+    }
+}

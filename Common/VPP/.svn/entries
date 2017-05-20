@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2006-12-01T18:16:08.023161Z"
+   url="http://svn4.cvsdude.com/vbjay105/VideoPaintball/Common/VPP"
+   last-author="vbjay105"
+   kind="dir"
+   repos="http://svn4.cvsdude.com/vbjay105/VideoPaintball"
+   revision="1"/>
+<entry
+   committed-rev="1"
+   name="FacingDirectionConversion.cs"
+   text-time="2006-11-16T18:23:38.215038Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="cfdef794c555fe740f9613849a6d1f7c"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="MessageConstants.cs"
+   text-time="2006-11-22T20:41:20.572140Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="0a9eb31e1475ff1a07cd09edfaf0edd0"
+   last-author="vbjay105"
+   kind="file"/>
+</wc-entries>

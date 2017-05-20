@@ -1,0 +1,168 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Net.Sockets;
+
+using VideoPaintballClient.Net;
+using VideoPaintballCommon.Util;
+using VideoPaintballCommon.MapObjects;
+using VideoPaintballCommon.VPP;
+using VideoPaintballCommon;
+using VideoPaintballClient.Util;
+using System.Threading;
+using VideoPaintballCommon.Net;
+
+namespace VideoPaintballClient
+{
+    public class GameEngine : System.Windows.Forms.Form
+    {
+        private System.ComponentModel.IContainer components = null;
+        private Map _map = null;
+        private ServerCommunicator _serverCommunicator;
+        private string _playerAction;
+
+        public GameEngine(TcpClient serverConnection)
+        {
+            InitializeComponent();
+
+            //issue [B.1.2] of the design document
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);             
+            this.Size = new Size((int)DimensionsUtil.GetMapWidth(), (int)DimensionsUtil.GetMapHeight());
+            this.ServerCommunications = new ServerCommunicator(new NetworkCommunicator(serverConnection));
+        }
+
+        //issue [B.1.4] of the design document
+        protected override void OnPaint(PaintEventArgs e)
+        { 
+            //issue [B.1.3] of the design document
+            this.Text = string.Format("The framerate is {0}", FrameUtil.CalculateFrameRate());
+
+            ServerCommunications.SendTurnData( _playerAction );
+            _playerAction = null;
+            MainMap = MapParser.ParseMap( ServerCommunications.ReceiveGameState() );
+          
+            //issue [A.1.2] of the design document
+            MainMap.Render(e.Graphics); 
+          
+            //issue [B.1.4] of the design document
+            this.Invalidate();
+
+            Thread.Sleep(100);
+        }
+
+        //issue [B.1.5] of the design document
+        private void GameEngine_KeyDown(object sender, KeyEventArgs e)
+        {
+            string message = string.Empty;            
+            switch (e.KeyCode)
+            {
+                case Keys.W:
+                    _playerAction = MessageConstants.PlayerActionShieldFront;
+                    break;
+
+                case Keys.A:
+                    _playerAction = MessageConstants.PlayerActionShieldLeft;
+                    break;
+
+                case Keys.S:
+                    _playerAction = MessageConstants.PlayerActionShieldBack;
+                    break;
+
+                case Keys.D:
+                    _playerAction = MessageConstants.PlayerActionShieldRight;
+                    break;
+
+                case Keys.Up:
+                    _playerAction = MessageConstants.PlayerActionUp;
+                    break;
+
+                case Keys.Down:
+                    _playerAction = MessageConstants.PlayerActionDown;
+                    break;
+                    
+                case Keys.Left:
+                    if (e.Shift) //issue [B.1.6] of the design document
+                    {
+                        _playerAction = MessageConstants.PlayerActionRotateLeft;
+                    }
+                    else
+                    {
+                        _playerAction = MessageConstants.PlayerActionLeft;
+                    }
+                    break;
+
+                case Keys.Right:
+                    if (e.Shift) //issue [B.1.6] of the design document
+                    {
+                        _playerAction = MessageConstants.PlayerActionRotateRight;
+                    }
+                    else
+                    {
+                        _playerAction = MessageConstants.PlayerActionRight;
+                    }
+                    break;
+
+                case Keys.Space:
+                    _playerAction = MessageConstants.PlayerActionShoot;
+                    break;
+            }          
+        }
+
+        public void Exit()
+        {
+            Application.Exit();
+        }
+
+        public Map MainMap
+        {
+            get { return _map; }
+            set { _map = value; }
+        }
+
+        public ServerCommunicator ServerCommunications
+        {
+            get { return _serverCommunicator; }
+            set { _serverCommunicator = value; }
+        }
+
+        #region Windows Form Designer generated code
+        
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            // 
+            // GameEngine
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.Name = "GameEngine";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "GameEngine";
+            this.KeyDown += new KeyEventHandler(GameEngine_KeyDown);
+        }
+
+     
+        #endregion
+    }
+}

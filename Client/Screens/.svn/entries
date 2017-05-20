@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2006-12-01T18:16:08.023161Z"
+   url="http://svn4.cvsdude.com/vbjay105/VideoPaintball/Client/Screens"
+   last-author="vbjay105"
+   kind="dir"
+   repos="http://svn4.cvsdude.com/vbjay105/VideoPaintball"
+   revision="1"/>
+<entry
+   committed-rev="1"
+   name="GameConfigurationScreen.resx"
+   text-time="2006-11-04T20:01:39.964945Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="388d9d62a3a6786469a49344ab8cf1d0"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="GameConfigurationScreen.Designer.cs"
+   text-time="2006-11-08T23:14:12.498532Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="c9813dd46ec4990e493bbdd3d2a4150f"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="GameConfigurationScreen.cs"
+   text-time="2006-11-17T03:50:11.900417Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="afb3a07e8b08a8ef5475e7a796de67da"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="LobbyScreen.resx"
+   text-time="2006-11-10T03:08:09.407606Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="32a9f8db6987c2d0d6bb55fc487be5e8"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="LobbyScreen.Designer.cs"
+   text-time="2006-11-10T03:08:09.317476Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="b42e33940ca051247e8a865654e0cc65"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="SplashScreen.resx"
+   text-time="2006-11-03T20:50:29.541641Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="a01e064abe308f8d87e8736abd03ea7a"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="LobbyScreen.cs"
+   text-time="2006-11-21T02:39:48.963026Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="6b21c22a6d20cd82d754c8b1ba36d4f8"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="SplashScreen.cs"
+   text-time="2006-11-22T20:21:26.735488Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="769b56bfda5af498f754ded7374968ae"
+   last-author="vbjay105"
+   kind="file"/>
+</wc-entries>

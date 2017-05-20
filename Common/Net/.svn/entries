@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2006-12-01T18:16:08.023161Z"
+   url="http://svn4.cvsdude.com/vbjay105/VideoPaintball/Common/Net"
+   last-author="vbjay105"
+   kind="dir"
+   repos="http://svn4.cvsdude.com/vbjay105/VideoPaintball"
+   revision="1"/>
+<entry
+   committed-rev="1"
+   name="NetworkCommunicator.cs"
+   text-time="2006-11-22T21:51:24.787505Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="29a54029ccbe73bf74ecc4f98d734f97"
+   last-author="vbjay105"
+   kind="file"/>
+</wc-entries>

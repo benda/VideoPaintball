@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2006-12-01T18:16:08.023161Z"
+   url="http://svn4.cvsdude.com/vbjay105/VideoPaintball/Common/MapObjects"
+   last-author="vbjay105"
+   kind="dir"
+   repos="http://svn4.cvsdude.com/vbjay105/VideoPaintball"
+   revision="1"/>
+<entry
+   committed-rev="3"
+   name="IRenderable.cs"
+   text-time="2006-12-01T22:25:25.178115Z"
+   committed-date="2006-12-01T23:55:39.138440Z"
+   checksum="ad99461fe76e508703d10722c97a21e4"
+   last-author="vbjay105"
+   kind="file"
+   revision="3"/>
+<entry
+   committed-rev="3"
+   name="Obstacle.cs"
+   text-time="2006-12-01T22:29:56.660458Z"
+   committed-date="2006-12-01T23:55:39.138440Z"
+   checksum="9a48b6c66fa5b8be8c133c5a57d23cc4"
+   last-author="vbjay105"
+   kind="file"
+   revision="3"/>
+<entry
+   committed-rev="3"
+   name="Player.cs"
+   text-time="2006-12-01T23:57:12.778305Z"
+   committed-date="2006-12-01T23:55:39.138440Z"
+   checksum="c7ea5bbb8472959b62a1ddaf3614c02a"
+   last-author="vbjay105"
+   kind="file"
+   revision="3"/>
+<entry
+   committed-rev="5"
+   name="Map.cs"
+   text-time="2006-12-02T00:07:06.772427Z"
+   committed-date="2006-12-02T00:07:28.216969Z"
+   checksum="4bc20055476a4c5ed2be96bd4a91931c"
+   last-author="vbjay105"
+   kind="file"
+   revision="5"/>
+<entry
+   committed-rev="1"
+   name="IMovable.cs"
+   text-time="2006-11-19T03:55:07.699904Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="4d5a9cc55d592f4d21d3e89d0ed5a8a3"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="Berry.cs"
+   text-time="2006-11-19T04:19:42.851067Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="7de7d54aae40992235562c4bc5aec2ae"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="MapObject.cs"
+   text-time="2006-11-27T02:30:52.119032Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="e0adc13da19fb55f8a5b543af3643cdb"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="1"
+   name="AIPlayer.cs"
+   text-time="2006-11-28T01:01:10.130155Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="99ec2a9025fd76ff9a6d0f38e6690c82"
+   last-author="vbjay105"
+   kind="file"/>
+<entry
+   committed-rev="3"
+   name="Paintball.cs"
+   text-time="2006-12-01T22:54:00.120656Z"
+   committed-date="2006-12-01T23:55:39.138440Z"
+   checksum="1cb429a448d24383a3be49b19e554e7f"
+   last-author="vbjay105"
+   kind="file"
+   revision="3"/>
+<entry
+   committed-rev="1"
+   name="Shield.cs"
+   text-time="2006-11-27T02:39:59.095545Z"
+   committed-date="2006-12-01T18:16:08.023161Z"
+   checksum="01c80f57e3face4ee5c921a9af4aff9f"
+   last-author="vbjay105"
+   kind="file"/>
+</wc-entries>
