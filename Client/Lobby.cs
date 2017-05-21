@@ -27,7 +27,7 @@ namespace VideoPaintballClient
         public void Wait()
         {
             _playerListLoadThread = new Thread(new ThreadStart(WaitInLobby));
-            _playerListLoadThread.Name = "VPPlayerListLoadThread";
+            _playerListLoadThread.Name = "LobbyWaitThread";
             _playerListLoadThread.IsBackground = true;
             _playerListLoadThread.Start();
         }

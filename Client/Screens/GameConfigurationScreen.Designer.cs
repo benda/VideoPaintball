@@ -39,7 +39,7 @@ namespace VideoPaintballClient.Screens
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
-            this.startGameButton = new System.Windows.Forms.Button();
+            this.hostGameButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -136,7 +136,7 @@ namespace VideoPaintballClient.Screens
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.startGameButton);
+            this.tabPage2.Controls.Add(this.hostGameButton);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -152,17 +152,17 @@ namespace VideoPaintballClient.Screens
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(295, 13);
             this.label3.TabIndex = 1;
-            this.label3.Text = "Configure your game and then press the \"Start Game\" Button";
+            this.label3.Text = "Configure your game and then press the \"Host Game\" Button";
             // 
-            // startGameButton
+            // hostGameButton
             // 
-            this.startGameButton.Location = new System.Drawing.Point(340, 68);
-            this.startGameButton.Name = "startGameButton";
-            this.startGameButton.Size = new System.Drawing.Size(141, 34);
-            this.startGameButton.TabIndex = 0;
-            this.startGameButton.Text = "Start Game";
-            this.startGameButton.UseVisualStyleBackColor = true;
-            this.startGameButton.Click += new System.EventHandler(this.startGameButton_Click);
+            this.hostGameButton.Location = new System.Drawing.Point(340, 68);
+            this.hostGameButton.Name = "hostGameButton";
+            this.hostGameButton.Size = new System.Drawing.Size(141, 34);
+            this.hostGameButton.TabIndex = 0;
+            this.hostGameButton.Text = "Host Game";
+            this.hostGameButton.UseVisualStyleBackColor = true;
+            this.hostGameButton.Click += new System.EventHandler(this.hostGameButton_Click);
             // 
             // GameConfigurationScreen
             // 
@@ -197,7 +197,7 @@ namespace VideoPaintballClient.Screens
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button startGameButton;
+        private System.Windows.Forms.Button hostGameButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox serversListBox;
     }

@@ -105,9 +105,9 @@ namespace VideoPaintballClient.Screens
             _pingsReturned = 0;
         }
 
-        private void startGameButton_Click(object sender, EventArgs e)
+        private void hostGameButton_Click(object sender, EventArgs e)
         {
-            startGameButton.Enabled = false;
+            hostGameButton.Enabled = false;
 
             Process process = new Process();
 
@@ -133,7 +133,7 @@ namespace VideoPaintballClient.Screens
             }
             else
             {
-                startGameButton.Enabled = true;
+                hostGameButton.Enabled = true;
             }
         }
 
@@ -161,5 +161,5 @@ namespace VideoPaintballClient.Screens
         }
 
         public GameConfiguration GameConfiguration { get; private set; }
-    }
+   }
 }
