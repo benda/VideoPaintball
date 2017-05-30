@@ -120,7 +120,7 @@ namespace VideoPaintballClient.Screens
 #endif
 
             process.StartInfo.UseShellExecute = true;
-            process.Start();
+  //          process.Start();
 
             Thread.Sleep(5000);
 

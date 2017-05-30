@@ -73,6 +73,7 @@ namespace VideoPaintballClient.Screens
             // 
             // startGameButton
             // 
+            this.startGameButton.Enabled = false;
             this.startGameButton.Location = new System.Drawing.Point(390, 193);
             this.startGameButton.Name = "startGameButton";
             this.startGameButton.Size = new System.Drawing.Size(115, 35);

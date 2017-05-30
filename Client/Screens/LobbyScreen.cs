@@ -26,7 +26,6 @@ namespace VideoPaintballClient.Screens
                 serverLabel.Text += lobby.GameConfiguration.ServerIPAddress;
             }
 
-            startGameButton.Visible = startGameButton.Enabled = lobby.GameConfiguration.ThisClientIsServer;
             _lobby = lobby;
             _lobby.PlayerJoined += new EventHandler<PlayerJoinedEventArgs>(LobbyScreen_PlayerJoined);
             _lobby.GameStarting += new EventHandler(LobbyScreen_GameStarting);
@@ -56,6 +55,7 @@ namespace VideoPaintballClient.Screens
             Invoke((Action)delegate
             {
                 playerListBox.Items.Add(e.PlayerIPAddress);
+                startGameButton.Enabled = _lobby.GameConfiguration.ThisClientIsServer;
             });
         }
     }
