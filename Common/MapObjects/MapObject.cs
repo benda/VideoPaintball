@@ -20,10 +20,6 @@ namespace VideoPaintballCommon.MapObjects
         {
             get { return _size; }
             set { _size = value; }
-        }
-
-
-
-        
+        }    
     }
 }
