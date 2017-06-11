@@ -14,6 +14,8 @@ using VideoPaintballClient.Net;
 using VideoPaintballClient.Net.NetScanning;
 using VideoPaintballCommon.Net;
 using System.Threading;
+using System.IO;
+using System.Reflection;
 
 namespace VideoPaintballClient.Screens
 {
@@ -119,7 +121,7 @@ namespace VideoPaintballClient.Screens
             process.StartInfo.FileName = "..\\..\\..\\Server\\bin\\release\\VideoPaintballServer.exe";
 #endif
 
-            //            process.StartInfo.FileName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "VideoPaintballServer.exe");
+          //  process.StartInfo.FileName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "VideoPaintballServer.exe");
 
             process.StartInfo.UseShellExecute = true;
             process.Start();
