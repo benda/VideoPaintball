@@ -21,11 +21,9 @@ namespace VideoPaintballCommon
         public static Map ParseMap(string mapData)
         {
             Map map = new Map();
-            string[] mapObjects = mapData.Replace(">", string.Empty).Split('<');
+            string[] mapObjects = mapData.Replace(">", string.Empty).Split(new char[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string mapObject in mapObjects)
             {
-                if (mapObject != string.Empty)
-                {
                     switch (mapObject[0])
                     {
                         case 'p':
@@ -41,7 +39,6 @@ namespace VideoPaintballCommon
                             map.Obstacles.Add(ParseObstacle(mapObject.Split(',')));
                             break;
                     }
-                }
             }
 
             return map;
@@ -55,13 +52,34 @@ namespace VideoPaintballCommon
         private static Player ParsePlayer(string[] mapObject)
         {
             Player player = new Player(ushort.Parse(mapObject[8]), mapObject[1]);
-           player.Location = new PointF(float.Parse(mapObject[2]), float.Parse(mapObject[3]));
-            player.FacingDirection = (VideoPaintballCommon.MapObjects.FacingDirectionType) Enum.Parse(typeof(VideoPaintballCommon.MapObjects.FacingDirectionType),(mapObject[4]));
-            player.ShieldLocation = (VideoPaintballCommon.MapObjects.ShieldLocationType) Enum.Parse(typeof(VideoPaintballCommon.MapObjects.ShieldLocationType),mapObject[5]);
+            player.Location = new PointF(float.Parse(mapObject[2]), float.Parse(mapObject[3]));
+            player.FacingDirection = (FacingDirectionType) Enum.Parse(typeof(FacingDirectionType),(mapObject[4]));
+            player.ShieldLocation = (ShieldLocationType) Enum.Parse(typeof(ShieldLocationType),mapObject[5]);
             player.Health = UInt16.Parse(mapObject[6]);
             player.Ammo = UInt16.Parse(mapObject[7]);
 
             return player;
+        }
+
+        public static void SerializerPlayer(Player player, StringBuilder serialized)
+        {
+            serialized.Append("<p,");
+            serialized.Append(player.ID);
+            serialized.Append(",");
+            serialized.Append(player.Location.X.ToString());
+            serialized.Append(",");
+            serialized.Append(player.Location.Y.ToString());
+            serialized.Append(",");
+            serialized.Append(player.FacingDirection.ToString());
+            serialized.Append(",");
+            serialized.Append(player.ShieldLocation.ToString());
+            serialized.Append(",");
+            serialized.Append(player.Health.ToString());
+            serialized.Append(",");
+            serialized.Append(player.Ammo.ToString());
+            serialized.Append(",");
+            serialized.Append(player.TeamNumber.ToString());
+            serialized.Append(">");
         }
 
         /// <summary>

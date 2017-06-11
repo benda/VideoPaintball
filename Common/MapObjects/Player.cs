@@ -239,11 +239,6 @@ namespace VideoPaintballCommon.MapObjects
             }
         }
 
-        public override string ToString()
-        {
-            return "<p," + ID + "," + Location.X.ToString() + "," + Location.Y.ToString() + "," + FacingDirection.ToString() + "," + ShieldLocation.ToString() + "," + Health.ToString() + "," + Ammo.ToString() + "," + TeamNumber.ToString() + ">";
-        }
-
         public void RecordPaintballHit()
         {
             if (Health > 5)

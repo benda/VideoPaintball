@@ -103,7 +103,6 @@ namespace VideoPaintballCommon.MapObjects
                 return;
             }
 
-
             //AI players take their turn here
             Player[] players = new Player[Players.Count];
             Players.Values.CopyTo(players, 0);
@@ -229,8 +228,6 @@ namespace VideoPaintballCommon.MapObjects
             {
                 paintball.Move();
             }
-
-
 
 
             //detect and record collisions between paintballs and players
@@ -410,25 +407,29 @@ namespace VideoPaintballCommon.MapObjects
 
         public override string ToString()
         {
-            StringBuilder text = new StringBuilder();
+            return Serialize();
+        }
+
+        public string Serialize()
+        {
+            StringBuilder serialized = new StringBuilder();
 
             foreach (Player player in Players.Values)
             {
-
-                text.Append(player.ToString());
+                MapParser.SerializerPlayer(player,serialized);
             }
 
             foreach (Paintball paintball in Paintballs)
             {
-                text.Append(paintball.ToString());
+                serialized.Append(paintball.ToString());
             }
 
             foreach (Obstacle obstacle in Obstacles)
             {
-                text.Append(obstacle.ToString());
+                serialized.Append(obstacle.ToString());
             }
 
-            return text.ToString();
+            return serialized.ToString();
         }
 
         public SizeF Size
