@@ -6,21 +6,28 @@ using System.Net.Sockets;
 
 using VideoPaintballCommon.VPP;
 using VideoPaintballCommon.Net;
+using log4net;
 
 namespace VideoPaintballClient.Net
 {
     static class ServerConnector
     {
-        public static TcpClient ConnectToServer(string serverAddress)
+        private static readonly ILog _log = LogManager.GetLogger(typeof(Game));
+
+        public static TcpClient ConnectToServer(IPAddress serverAddress)
         {
+            _log.InfoFormat("Connecting to server: [{0}]", serverAddress);
+
             TcpClient serverConnection = null;
             try
             {
                 serverConnection = new TcpClient();
-                serverConnection.Connect(new IPEndPoint(IPAddress.Parse(serverAddress), IPUtil.DefaultPort));
+                serverConnection.Connect(new IPEndPoint(serverAddress, IPUtil.DefaultPort));
             }
             catch (SocketException ex)
             {
+                _log.Error("Error connecting", ex);
+
                 if (ex.Message == "No connection could be made because the target machine actively refused it")
                 {
                     serverConnection = null;
@@ -42,14 +49,14 @@ namespace VideoPaintballClient.Net
             return serverConnection;
         }
 
-        public static bool ServerIsHostingGame(IPAddress ip)
+        public static bool ServerIsHostingGame(IPAddress serverAddress)
         {
             TcpClient client = null;
             string data = string.Empty;
 
             try
             {
-                client = ServerConnector.ConnectToServer(ip.ToString());
+                client = ServerConnector.ConnectToServer(serverAddress);
                 if (client != null)
                 {
                     if (client.GetStream().CanRead)

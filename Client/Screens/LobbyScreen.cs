@@ -17,7 +17,7 @@ namespace VideoPaintballClient.Screens
         public LobbyScreen(Lobby lobby)
         {
             InitializeComponent();
-            if (string.IsNullOrEmpty(lobby.GameConfiguration.ServerIPAddress))
+            if (lobby.GameConfiguration.ServerIPAddress == null)
             {
                 serverLabel.Text += "You are the server";
             }

@@ -121,10 +121,10 @@ namespace VideoPaintballClient.Screens
 
             process.StartInfo.UseShellExecute = true;
   //          process.Start();
-
+  //TODO: wait until server is up and listening
             Thread.Sleep(5000);
 
-            GameConfiguration.ServerConnection = ServerConnector.ConnectToServer(IPUtil.GetLocalIpAddress().ToString());
+            GameConfiguration.ServerConnection = ServerConnector.ConnectToServer(IPUtil.GetLocalIpAddress());
             GameConfiguration.ThisClientIsServer = true;
 
             if (GameConfiguration.ServerConnection != null)
@@ -142,11 +142,11 @@ namespace VideoPaintballClient.Screens
             if (serversListBox.SelectedIndex > -1)
             {
                 string serverAddress = (string)serversListBox.SelectedItem;
-                GameConfiguration.ServerIPAddress = serverAddress;
+                GameConfiguration.ServerIPAddress = IPAddress.Parse(serverAddress);
                 if (serverAddress.IndexOf("Available", StringComparison.InvariantCultureIgnoreCase) != -1)
                 {
                     serverAddress = serverAddress.Remove(serverAddress.IndexOf(" L", StringComparison.InvariantCultureIgnoreCase));
-                    GameConfiguration.ServerConnection = ServerConnector.ConnectToServer(serverAddress);
+                    GameConfiguration.ServerConnection = ServerConnector.ConnectToServer(GameConfiguration.ServerIPAddress);
 
                     if (GameConfiguration.ServerConnection != null)
                     {
