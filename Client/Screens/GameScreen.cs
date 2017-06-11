@@ -20,7 +20,9 @@ namespace VideoPaintballClient
     public class GameScreen : System.Windows.Forms.Form
     {
         private System.ComponentModel.IContainer components = null;
-       private Game _game;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel statusLabel;
+        private Game _game;
 
         public GameScreen(Game game)
         {
@@ -51,7 +53,7 @@ namespace VideoPaintballClient
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            this.Text = string.Format("FPS: {0} TPS: {1}", FrameUtil.CalculateRatePerSecond(), _game.TurnsPerSecond);
+            statusLabel.Text = string.Format("FPS: {0} TPS: {1}", FrameUtil.CalculateRatePerSecond(), _game.TurnsPerSecond);
 
             _game.Render(e.Graphics);
         }
@@ -138,15 +140,44 @@ namespace VideoPaintballClient
         /// </summary>
         private void InitializeComponent()
         {
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1.SuspendLayout();
+            this.SuspendLayout();
             // 
-            // GameEngine
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 244);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(292, 22);
+            this.statusStrip1.TabIndex = 0;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(246, 17);
+            this.statusLabel.Spring = true;
+            this.statusLabel.Text = "toolStripStatusLabel1";
+            // 
+            // GameScreen
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(292, 266);
-            this.Name = "GameEngine";
+            this.Controls.Add(this.statusStrip1);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "GameScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "GameEngine";
-            this.KeyDown += new KeyEventHandler(GameEngine_KeyDown);
+            this.Text = "Diablo IV";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameEngine_KeyDown);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
      

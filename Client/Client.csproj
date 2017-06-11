@@ -82,6 +82,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\GameScreen.resx">
+      <DependentUpon>GameScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\LobbyScreen.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LobbyScreen.cs</DependentUpon>
