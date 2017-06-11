@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using VideoPaintballCommon.VPP;
 using System.Diagnostics;
 using log4net;
+using System.Net;
 
 namespace VideoPaintballCommon.Net
 {
@@ -26,11 +27,10 @@ namespace VideoPaintballCommon.Net
             this._networkConnection = networkConnection;
         }
 
-        //TODO: make private instance member
-        public static void SendData(string data, TcpClient client)
+        public void SendData(string data)
         {
-            NetworkStream stream = client.GetStream();
-            _log.DebugFormat("Sending [{0}] to [{1}]: ", data, client.Client.RemoteEndPoint);
+            NetworkStream stream = NetworkConnection.GetStream();
+            _log.DebugFormat("Sending [{0}] to [{1}]: ", data, RemoteEndPoint);
 
             if (data[data.Length - 1].ToString() != MessageConstants.MessageEndDelimiter)
             {
@@ -40,12 +40,7 @@ namespace VideoPaintballCommon.Net
             byte[] buffer = Encoding.ASCII.GetBytes(data);
             stream.Write(buffer, 0, buffer.Length);
 
-            _log.Debug("Sent.");
-        }
-
-        public void SendData(string data)
-        {
-            NetworkCommunicator.SendData(data, this.NetworkConnection);
+            _log.Debug("Sent.");            
         }
 
         public string ReceiveData()
@@ -103,6 +98,11 @@ namespace VideoPaintballCommon.Net
         private TcpClient NetworkConnection
         {
             get { return _networkConnection; }
+        }
+
+        public EndPoint RemoteEndPoint
+        {
+            get { return NetworkConnection.Client.RemoteEndPoint; }
         }
 
         private bool _disposed = false;

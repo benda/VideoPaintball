@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using VideoPaintballCommon.Net;
 
 namespace VideoPaintballServer
 {
     class PlayerJoinedEventArgs : EventArgs
     {
 
-        public PlayerJoinedEventArgs(string clientIP, TcpClient tcpClient)
+        public PlayerJoinedEventArgs(string clientIP, NetworkCommunicator client)
         {
             ClientIP = clientIP;
-            TcpClient = tcpClient;
+            Client = client;
         }
 
-        public TcpClient TcpClient { get; private set; }
+        public NetworkCommunicator Client { get; private set; }
         public string ClientIP { get; private set; }
 
     }

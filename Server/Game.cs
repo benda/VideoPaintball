@@ -35,7 +35,7 @@ namespace VideoPaintballServer
 
         private List<PlayerAction> _currentTurnClientActions = new List<PlayerAction>();
         private Map _completeGameState = new Map();
-        private List<TcpClient> _players = new List<TcpClient>();
+        private List<NetworkCommunicator> _players = new List<NetworkCommunicator>();
 
         private void RunGame()
         {
@@ -77,30 +77,30 @@ namespace VideoPaintballServer
             });
         }
 
-        public void PlayerJoined(TcpClient client, string thisClientIP)
+        public void PlayerJoined(NetworkCommunicator client, string thisClientIP)
         {
             _players.Add(client);
 
             Player player = new Player(1, thisClientIP);
             _completeGameState.Players.Add(thisClientIP, player);
 
-            NetworkCommunicator.SendData(_players.Count.ToString(), client); //= player ID
+            client.SendData(_players.Count.ToString()); //= player ID
 
             //send this new player to all players player list in game lobby
-            foreach (TcpClient playerClient in _players)
+            foreach (NetworkCommunicator playerClient in _players)
             {
                 string message = "PlayerJoined:" + thisClientIP;
-                NetworkCommunicator.SendData(message, playerClient);
+                playerClient.SendData(message);
 
-                if (playerClient.Client.RemoteEndPoint.ToString() == thisClientIP)
+                if (playerClient.RemoteEndPoint.Equals(client.RemoteEndPoint))
                 {
                     //send new player all existing players
-                    foreach (TcpClient playerClientB in _players)
+                    foreach (NetworkCommunicator playerClientB in _players)
                     {
-                        if (playerClientB.Client.RemoteEndPoint.ToString() != thisClientIP)
+                        if (!playerClientB.RemoteEndPoint.Equals(client.RemoteEndPoint))
                         {
-                            message = "PlayerJoined:" + playerClientB.Client.RemoteEndPoint.ToString();
-                            NetworkCommunicator.SendData(message, playerClient);
+                            message = "PlayerJoined:" + playerClientB.RemoteEndPoint.ToString();
+                            playerClient.SendData(message);
                         }
                     }
                 }
@@ -111,23 +111,21 @@ namespace VideoPaintballServer
             playerThread.Start(client);
         }
 
-        private void ClientGameLoop(object tcpClient)
+        private void ClientGameLoop(object client)
         {
-            TcpClient client = (TcpClient)tcpClient;
+            NetworkCommunicator networkCommunicator = (NetworkCommunicator)client;
             ManualResetEvent sentDataThisTurn = new ManualResetEvent(false);
             ManualResetEvent endOfTurnWait = new ManualResetEvent(false);
 
             try
             {
                 string data = string.Empty;
-                string thisClientIP = client.Client.RemoteEndPoint.ToString();
-                NetworkCommunicator networkCommunicator = new NetworkCommunicator(client);
 
                 _playersThatSentDataThisTurnList.Add(sentDataThisTurn);
                 _endOfTurnWaitList.Add(endOfTurnWait);
-                _currentTurnClientActions.Add(new PlayerAction(thisClientIP, MessageConstants.PlayerActionNone));
+                _currentTurnClientActions.Add(new PlayerAction(networkCommunicator.RemoteEndPoint.ToString(), MessageConstants.PlayerActionNone));
 
-                _log.InfoFormat("Client {0} connected running on thread: {1}, waiting for start game / 1st turn data", thisClientIP, Thread.CurrentThread.ManagedThreadId);
+                _log.InfoFormat("Client {0} connected running on thread: {1}, waiting for start game / 1st turn data", networkCommunicator.RemoteEndPoint, Thread.CurrentThread.ManagedThreadId);
                 data = networkCommunicator.ReceiveData();
                 bool readFromClient = false;
 
@@ -135,9 +133,9 @@ namespace VideoPaintballServer
                 {
                     readFromClient = true;
                     RunGame();
-                    foreach (TcpClient clientPlayer in _players)
+                    foreach (NetworkCommunicator clientPlayer in _players)
                     {
-                        NetworkCommunicator.SendData(MessageConstants.GameStarting, clientPlayer);
+                        clientPlayer.SendData(MessageConstants.GameStarting);
                     }
                     _completeGameState.StartNewGame(_currentTurnClientActions);
                 }
@@ -158,7 +156,7 @@ namespace VideoPaintballServer
 
                     foreach (PlayerAction action in _currentTurnClientActions)
                     {
-                        if (action.PlayerID == thisClientIP)
+                        if (action.PlayerID == networkCommunicator.RemoteEndPoint.ToString())
                         {
                             action.Action = data;
                         }
@@ -182,10 +180,7 @@ namespace VideoPaintballServer
             {
                 sentDataThisTurn.Close();
                 endOfTurnWait.Close();
-                if (client != null)
-                {
-                    client.Close();
-                }
+                networkCommunicator.Dispose();
             }
         }
 

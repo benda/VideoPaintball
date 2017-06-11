@@ -13,8 +13,6 @@ namespace VideoPaintballServer
         private static readonly ILog _log = LogManager.GetLogger(typeof(ClientListener));
 
         public event EventHandler<PlayerJoinedEventArgs> PlayerJoined;
-        public event EventHandler<PlayerJoinedEventArgs> PlayerStart;
-        public event EventHandler GameStart;
 
         private bool _listen = true;
 
@@ -46,13 +44,12 @@ namespace VideoPaintballServer
                         string data = networkCommunicator.ReceiveData();
                         if (data == MessageConstants.CloseConnection)
                         {
-                            client.Client.Close();
-                            client.Close();
+                            networkCommunicator.Dispose();
                             _log.InfoFormat("Closed client connection - client was just finding servers.");
                         }
                         else if (data == MessageConstants.JoinGame)
                         {
-                            OnPlayerJoined(thisClientIP, client);                       
+                            OnPlayerJoined(thisClientIP, networkCommunicator);                       
                         }
                     }
                     Thread.Sleep(100);
@@ -74,19 +71,9 @@ namespace VideoPaintballServer
             _listen = false;
         }
 
-        private void OnPlayerJoined(string clientIP, TcpClient tcpClient)
+        private void OnPlayerJoined(string clientIP, NetworkCommunicator client)
         {
-            PlayerJoined?.Invoke(this, new PlayerJoinedEventArgs(clientIP, tcpClient));
-        }
-
-        private void OnPlayerStart(string clientIP, TcpClient tcpClient)
-        {
-            PlayerStart?.Invoke(this, new PlayerJoinedEventArgs(clientIP, tcpClient));
-        }
-
-        private void OnGameStart()
-        {
-            GameStart?.Invoke(this, EventArgs.Empty);
+            PlayerJoined?.Invoke(this, new PlayerJoinedEventArgs(clientIP, client));
         }
     }
 }
