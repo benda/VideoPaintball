@@ -119,9 +119,12 @@ namespace VideoPaintballClient.Screens
             process.StartInfo.FileName = "..\\..\\..\\Server\\bin\\release\\VideoPaintballServer.exe";
 #endif
 
+            //            process.StartInfo.FileName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "VideoPaintballServer.exe");
+
             process.StartInfo.UseShellExecute = true;
-  //          process.Start();
-  //TODO: wait until server is up and listening
+            process.Start();
+  
+            //TODO: wait until server is up and listening
             Thread.Sleep(5000);
 
             GameConfiguration.ServerConnection = ServerConnector.ConnectToServer(IPUtil.GetLocalIpAddress());

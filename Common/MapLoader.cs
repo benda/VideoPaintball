@@ -6,6 +6,7 @@ using System.Drawing;
 
 using VideoPaintballCommon.MapObjects;
 using VideoPaintballCommon;
+using System.Reflection;
 
 namespace VideoPaintballCommon
 {
@@ -14,10 +15,9 @@ namespace VideoPaintballCommon
     /// </summary>
     public static class MapLoader
     {
-
         public static Map LoadRandomMap()
         {
-            string[] maps = Directory.GetFiles("..\\..\\..\\Maps");
+            string[] maps = Directory.GetFiles(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),"Maps"));
             Random r = new Random();
             string chosenMap = maps[ r.Next(0, maps.Length) ];
             StreamReader reader = null;
