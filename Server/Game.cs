@@ -77,19 +77,21 @@ namespace VideoPaintballServer
             });
         }
 
-        public void PlayerJoined(NetworkCommunicator client, string thisClientIP)
+        public void PlayerJoined(NetworkCommunicator client)
         {
+            string clientEndPoint = client.RemoteEndPoint.ToString();
+
             _players.Add(client);
 
-            Player player = new Player(1, thisClientIP);
-            _completeGameState.Players.Add(thisClientIP, player);
+            Player player = new Player(1, clientEndPoint);
+            _completeGameState.Players.Add(clientEndPoint, player);
 
             client.SendData(_players.Count.ToString()); //= player ID
 
             //send this new player to all players player list in game lobby
             foreach (NetworkCommunicator playerClient in _players)
             {
-                string message = "PlayerJoined:" + thisClientIP;
+                string message = "PlayerJoined:" + clientEndPoint;
                 playerClient.SendData(message);
 
                 if (playerClient.RemoteEndPoint.Equals(client.RemoteEndPoint))

@@ -9,15 +9,11 @@ namespace VideoPaintballServer
 {
     class PlayerJoinedEventArgs : EventArgs
     {
-
-        public PlayerJoinedEventArgs(string clientIP, NetworkCommunicator client)
+        public PlayerJoinedEventArgs(NetworkCommunicator client)
         {
-            ClientIP = clientIP;
             Client = client;
         }
 
         public NetworkCommunicator Client { get; private set; }
-        public string ClientIP { get; private set; }
-
     }
 }

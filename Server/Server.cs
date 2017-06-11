@@ -42,7 +42,7 @@ namespace VideoPaintballServer
 
         private void _clientListener_PlayerJoined(object sender, PlayerJoinedEventArgs e)
         {
-            _game.PlayerJoined(e.Client, e.ClientIP);
+            _game.PlayerJoined(e.Client);
         }
     }
 }

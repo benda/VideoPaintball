@@ -34,9 +34,8 @@ namespace VideoPaintballServer
                     if (listener.Pending())
                     {
                         client = listener.AcceptTcpClient();
-                        string thisClientIP = client.Client.RemoteEndPoint.ToString();
                         NetworkCommunicator networkCommunicator = new NetworkCommunicator(client);
-                        _log.InfoFormat("Client {0} connected.", thisClientIP);
+                        _log.InfoFormat("Client {0} connected.", networkCommunicator.RemoteEndPoint);
 
                         //acknowledge client is able to join this game
                         networkCommunicator.SendData(MessageConstants.ServerAvailable);
@@ -49,7 +48,7 @@ namespace VideoPaintballServer
                         }
                         else if (data == MessageConstants.JoinGame)
                         {
-                            OnPlayerJoined(thisClientIP, networkCommunicator);                       
+                            OnPlayerJoined(networkCommunicator);                       
                         }
                     }
                     Thread.Sleep(100);
@@ -71,9 +70,9 @@ namespace VideoPaintballServer
             _listen = false;
         }
 
-        private void OnPlayerJoined(string clientIP, NetworkCommunicator client)
+        private void OnPlayerJoined(NetworkCommunicator client)
         {
-            PlayerJoined?.Invoke(this, new PlayerJoinedEventArgs(clientIP, client));
+            PlayerJoined?.Invoke(this, new PlayerJoinedEventArgs(client));
         }
     }
 }
