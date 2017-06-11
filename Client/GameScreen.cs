@@ -37,7 +37,7 @@ namespace VideoPaintballClient
         protected override void OnPaint(PaintEventArgs e)
         { 
             //issue [B.1.3] of the design document
-            this.Text = string.Format("The framerate is {0}", FrameUtil.CalculateFrameRate());
+            this.Text = string.Format("The framerate (FPS) is {0}", FrameUtil.CalculateFrameRate());
 
             ServerCommunications.SendTurnData( _playerAction );
             _playerAction = null;

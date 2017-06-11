@@ -19,16 +19,14 @@ namespace VideoPaintballClient.Util
         /// <returns></returns>
         public static int CalculateFrameRate()
         {
-            if (System.Environment.TickCount - lastTick >= 1000)
+            if (Math.Abs(Environment.TickCount - lastTick) >= 1000)
             {
                 lastFrameRate = frameRate;
                 frameRate = 0;
-                lastTick = System.Environment.TickCount;
+                lastTick = Environment.TickCount;
             }
             frameRate++;
             return lastFrameRate;
         }
-
-
     }
 }
