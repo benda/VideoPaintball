@@ -24,7 +24,9 @@ namespace VideoPaintballClient
                 lobbyScreen.ShowDialog();
             }
 
-            _gameScreen = new GameScreen(_gameConfiguration.ServerConnection);
+            Game game = new Game(_gameConfiguration.ServerConnection);
+            _gameScreen = new GameScreen(game);
+
             Application.Run(_gameScreen);
         }
 

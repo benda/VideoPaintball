@@ -52,6 +52,7 @@
     <Compile Include="GameRunner.cs" />
     <Compile Include="GameConfiguration.cs" />
     <Compile Include="Lobby.cs" />
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="Net\NetScanning\NetScanPingCompletedEventArgs.cs" />
     <Compile Include="PlayerJoinedEventArgs.cs" />
     <Compile Include="Program.cs" />

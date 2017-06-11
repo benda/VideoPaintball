@@ -13,43 +13,47 @@ using VideoPaintballCommon;
 using VideoPaintballClient.Util;
 using System.Threading;
 using VideoPaintballCommon.Net;
+using System.Diagnostics;
 
 namespace VideoPaintballClient
 {
     public class GameScreen : System.Windows.Forms.Form
     {
         private System.ComponentModel.IContainer components = null;
-        private Map _map = null;
-        private ServerCommunicator _serverCommunicator;
-        private string _playerAction;
+       private Game _game;
 
-        public GameScreen(NetworkCommunicator serverConnection)
+        public GameScreen(Game game)
         {
             InitializeComponent();
 
-            //issue [B.1.2] of the design document
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);             
             this.Size = new Size((int)DimensionsUtil.GetMapWidth(), (int)DimensionsUtil.GetMapHeight());
-            this.ServerCommunications = new ServerCommunicator(serverConnection);
+            _game = game;
+            _game.InvalidateNeeded += _game_InvalidateNeeded;
+
+            Application.Idle += Application_Idle;
         }
 
-        //issue [B.1.4] of the design document
+        private void Application_Idle(object sender, EventArgs e)
+        {
+            NativeMethods.Message message;
+
+            while (!NativeMethods.PeekMessage(out message, IntPtr.Zero, 0, 0, 0))
+            {
+                _game.Tick(sender, e);
+            }
+        }
+
+        private void _game_InvalidateNeeded(object sender, EventArgs e)
+        {
+            Invalidate();
+        }
+
         protected override void OnPaint(PaintEventArgs e)
-        { 
-            //issue [B.1.3] of the design document
-            this.Text = string.Format("The framerate (FPS) is {0}", FrameUtil.CalculateFrameRate());
+        {
+            this.Text = string.Format("FPS: {0} TPS: {1}", FrameUtil.CalculateRatePerSecond(), _game.TurnsPerSecond);
 
-            ServerCommunications.SendTurnData( _playerAction );
-            _playerAction = null;
-            MainMap = MapParser.ParseMap( ServerCommunications.ReceiveGameState() );
-          
-            //issue [A.1.2] of the design document
-            MainMap.Render(e.Graphics); 
-          
-            //issue [B.1.4] of the design document
-            this.Invalidate();
-
-            Thread.Sleep(10);
+            _game.Render(e.Graphics);
         }
 
         //issue [B.1.5] of the design document
@@ -59,72 +63,55 @@ namespace VideoPaintballClient
             switch (e.KeyCode)
             {
                 case Keys.W:
-                    _playerAction = MessageConstants.PlayerActionShieldFront;
+                    _game.PlayerAction = MessageConstants.PlayerActionShieldFront;
                     break;
 
                 case Keys.A:
-                    _playerAction = MessageConstants.PlayerActionShieldLeft;
+                    _game.PlayerAction = MessageConstants.PlayerActionShieldLeft;
                     break;
 
                 case Keys.S:
-                    _playerAction = MessageConstants.PlayerActionShieldBack;
+                    _game.PlayerAction = MessageConstants.PlayerActionShieldBack;
                     break;
 
                 case Keys.D:
-                    _playerAction = MessageConstants.PlayerActionShieldRight;
+                    _game.PlayerAction = MessageConstants.PlayerActionShieldRight;
                     break;
 
                 case Keys.Up:
-                    _playerAction = MessageConstants.PlayerActionUp;
+                    _game.PlayerAction = MessageConstants.PlayerActionUp;
                     break;
 
                 case Keys.Down:
-                    _playerAction = MessageConstants.PlayerActionDown;
+                    _game.PlayerAction = MessageConstants.PlayerActionDown;
                     break;
                     
                 case Keys.Left:
                     if (e.Shift) //issue [B.1.6] of the design document
                     {
-                        _playerAction = MessageConstants.PlayerActionRotateLeft;
+                        _game.PlayerAction = MessageConstants.PlayerActionRotateLeft;
                     }
                     else
                     {
-                        _playerAction = MessageConstants.PlayerActionLeft;
+                        _game.PlayerAction = MessageConstants.PlayerActionLeft;
                     }
                     break;
 
                 case Keys.Right:
                     if (e.Shift) //issue [B.1.6] of the design document
                     {
-                        _playerAction = MessageConstants.PlayerActionRotateRight;
+                        _game.PlayerAction = MessageConstants.PlayerActionRotateRight;
                     }
                     else
                     {
-                        _playerAction = MessageConstants.PlayerActionRight;
+                        _game.PlayerAction = MessageConstants.PlayerActionRight;
                     }
                     break;
 
                 case Keys.Space:
-                    _playerAction = MessageConstants.PlayerActionShoot;
+                    _game.PlayerAction = MessageConstants.PlayerActionShoot;
                     break;
             }          
-        }
-
-        public void Exit()
-        {
-            Application.Exit();
-        }
-
-        public Map MainMap
-        {
-            get { return _map; }
-            set { _map = value; }
-        }
-
-        public ServerCommunicator ServerCommunications
-        {
-            get { return _serverCommunicator; }
-            set { _serverCommunicator = value; }
         }
 
         #region Windows Form Designer generated code

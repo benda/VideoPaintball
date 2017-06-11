@@ -17,7 +17,7 @@ namespace VideoPaintballTests.UtilTests
             Console.WriteLine("Running frame rate test 1, this takes 10 seconds...");
             while(i < 100)
             {
-                currentFrameRate = FrameUtil.CalculateFrameRate();
+                currentFrameRate = FrameUtil.CalculateRatePerSecond();
                 System.Threading.Thread.Sleep(100); //simulate rendering
                 i++;
             }
@@ -32,7 +32,7 @@ namespace VideoPaintballTests.UtilTests
             Console.WriteLine("Running frame rate test 2, this takes 10 seconds...");
             while (i < 1000)
             {
-                currentFrameRate = FrameUtil.CalculateFrameRate();
+                currentFrameRate = FrameUtil.CalculateRatePerSecond();
                 System.Threading.Thread.Sleep(10); //simulate rendering
                 i++;
             }
