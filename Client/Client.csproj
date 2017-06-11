@@ -61,7 +61,7 @@
     <Compile Include="Screens\GameConfigurationScreen.Designer.cs">
       <DependentUpon>GameConfigurationScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameScreen.cs">
+    <Compile Include="Screens\GameScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Net\NetScanning\NetScan.cs">
