@@ -7,10 +7,8 @@ namespace VideoPaintballCommon.MapObjects
 {
     public class Shield : MapObject
     {
-        public Shield(PointF location, SizeF size)
+        public Shield(PointF location, SizeF size) : base (location, size)
         {
-            this.Location = location;
-            this.Size = size;
         }
     }
 }

@@ -9,6 +9,17 @@ namespace VideoPaintballCommon.MapObjects
     {
         private PointF _location;
         private SizeF _size;
+
+        public MapObject(PointF location) : this(location, new SizeF())
+        {
+        }
+
+        public MapObject(PointF location, SizeF size)
+        {
+            this.Location = location;
+            this.Size = size;
+            RenderTimes = 1;
+        }
       
         public PointF Location
         {
@@ -21,5 +32,14 @@ namespace VideoPaintballCommon.MapObjects
             get { return _size; }
             set { _size = value; }
         }    
+
+        public int RenderTimes { get; set; }
+
+        public virtual void Serialize(MapObjectSerializer serializer)
+        {
+            serializer.AppendProperty(Location.X);
+            serializer.AppendProperty(Location.Y);
+        }
+    
     }
 }

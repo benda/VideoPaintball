@@ -22,6 +22,7 @@ namespace VideoPaintballCommon.MapObjects
         public Map()
         {
             Size = new SizeF(DimensionsUtil.GetMapWidth(), DimensionsUtil.GetMapHeight());
+            PaintballHits = new List<PaintballHit>();
         }
 
         /// <summary>
@@ -366,10 +367,7 @@ namespace VideoPaintballCommon.MapObjects
                     }
                 }
             }
-
         }
-
-
 
         private PointF PlacePlayer()
         {
@@ -462,5 +460,9 @@ namespace VideoPaintballCommon.MapObjects
             set { _berries = value; }
         }
 
+        public List<PaintballHit> PaintballHits
+        {
+            get; set;
+        }
     }
 }

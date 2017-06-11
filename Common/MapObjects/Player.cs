@@ -40,7 +40,7 @@ namespace VideoPaintballCommon.MapObjects
         private PointF _oldLocation;
         private ushort _teamNumber;
 
-        public Player(ushort teamNumber, string id)
+        public Player(ushort teamNumber, string id) : base(new PointF(), new SizeF())
         {
             this.TeamNumber = teamNumber;
             this.TeamColor = DetermineTeamColor();

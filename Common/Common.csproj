@@ -53,6 +53,8 @@
     <Compile Include="MapObjects\IRenderable.cs" />
     <Compile Include="MapObjects\Map.cs" />
     <Compile Include="MapObjects\MapObject.cs" />
+    <Compile Include="MapObjects\MapObjectSerializer.cs" />
+    <Compile Include="MapObjects\PaintballHit.cs" />
     <Compile Include="MapObjects\Obstacle.cs" />
     <Compile Include="MapObjects\Paintball.cs" />
     <Compile Include="MapObjects\Player.cs" />

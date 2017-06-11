@@ -40,7 +40,7 @@ namespace VideoPaintballTests.MapObjectTests
 
             Assert.AreEqual(_map.Players.Count, 3);
 
-            _map.Berries.Add(new Berry());
+            _map.Berries.Add(new Berry(new PointF(100,100)));
             Assert.AreEqual(_map.Berries.Count, 1);
 
             _map.Paintballs.Add(new Paintball(new PointF(100, 100), new PointF(10, 15)));
