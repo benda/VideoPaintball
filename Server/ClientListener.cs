@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net;
+﻿using log4net;
+using System;
 using System.Net.Sockets;
 using System.Threading;
-using System.Diagnostics;
-using System.Drawing;
-
-using VideoPaintballCommon.Detectors;
 using VideoPaintballCommon.Net;
 using VideoPaintballCommon.VPP;
-using VideoPaintballCommon.MapObjects;
-using VideoPaintballCommon.Util;
-using VideoPaintballCommon;
 using VideoPaintballServer.Util;
-using log4net;
 
 namespace VideoPaintballServer
 {
@@ -41,7 +31,6 @@ namespace VideoPaintballServer
 
                 _log.InfoFormat("Waiting for a connection on port: {0} ", port);
 
-                //wait for connections loop
                 while (_listen)
                 {
                     if (listener.Pending())
