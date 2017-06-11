@@ -105,7 +105,7 @@ namespace VideoPaintballCommon.MapObjects
 
 
             //AI players take their turn here
-            Player[] players = new Player[ Players.Count ]; 
+            Player[] players = new Player[Players.Count];
             Players.Values.CopyTo(players, 0);
 
             foreach (Player player in Players.Values)
@@ -114,17 +114,15 @@ namespace VideoPaintballCommon.MapObjects
                 {
                     ((AIPlayer)player).DoTurnAction(players);
 
-                foreach (PlayerAction action in playerActions)
-                {
-                    if (action.PlayerID == player.ID)
+                    foreach (PlayerAction action in playerActions)
                     {
-                        action.Action = ((AIPlayer)player).Action;
+                        if (action.PlayerID == player.ID)
+                        {
+                            action.Action = ((AIPlayer)player).Action;
+                        }
                     }
                 }
             }
-           }
-
-
 
             foreach (PlayerAction playerAction in playerActions)
             {
@@ -233,13 +231,13 @@ namespace VideoPaintballCommon.MapObjects
             }
 
 
-            
-          
+
+
             //detect and record collisions between paintballs and players
             //issue [B.2.6] of the design document
             Shield shield = null;
             PointF shieldLocation = new PointF(0, 0);
-            SizeF shieldSize = new SizeF(0,0);
+            SizeF shieldSize = new SizeF(0, 0);
             bool wasCollision = false;
             foreach (Paintball paintball in Paintballs)
             {
@@ -257,7 +255,7 @@ namespace VideoPaintballCommon.MapObjects
                                 break;
 
                             case ShieldLocationType.Back:
-                                shieldLocation = new PointF(player.Location.X, player.Location.Y + DimensionsUtil.GetAvatarHeight() + DimensionsUtil.GetAvatarShieldOffset()); 
+                                shieldLocation = new PointF(player.Location.X, player.Location.Y + DimensionsUtil.GetAvatarHeight() + DimensionsUtil.GetAvatarShieldOffset());
                                 shieldSize = new SizeF(DimensionsUtil.GetAvatarWidth(), 1);
                                 break;
 
@@ -273,10 +271,10 @@ namespace VideoPaintballCommon.MapObjects
                         }
 
                         shield = new Shield(shieldLocation, shieldSize);
-                        if(CollisionDetector.Collision(paintball, shield))
+                        if (CollisionDetector.Collision(paintball, shield))
                         {
                             wasCollision = true;
-                           _paintballsToRemove.Add(paintball);
+                            _paintballsToRemove.Add(paintball);
                         }
                         else if (CollisionDetector.Collision(paintball, player))
                         {
@@ -312,8 +310,8 @@ namespace VideoPaintballCommon.MapObjects
                     }
                 }
             }
-           
-       
+
+
 
             //remove paintballs that hit players, obstacles or went offscreen
             foreach (Paintball paintball in _paintballsToRemove)
@@ -371,7 +369,7 @@ namespace VideoPaintballCommon.MapObjects
                     }
                 }
             }
-               
+
         }
 
 
