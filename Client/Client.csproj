@@ -85,9 +85,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>LobbyScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\SplashScreen.resx">
+    <EmbeddedResource Include="Screens\HelpScreen.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>SplashScreen.cs</DependentUpon>
+      <DependentUpon>HelpScreen.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -111,7 +111,7 @@
     <Compile Include="Screens\LobbyScreen.Designer.cs">
       <DependentUpon>LobbyScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\SplashScreen.cs">
+    <Compile Include="Screens\HelpScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Util\FrameUtil.cs" />

@@ -7,24 +7,21 @@ namespace VideoPaintballClient.Screens
     /// <summary>
 	/// Summary description for SplashScreen.
 	/// </summary>
-	public class SplashScreen : System.Windows.Forms.Form
+	public class HelpScreen : System.Windows.Forms.Form
     {
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Timer timer1;
-		private int _time;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
 		private System.ComponentModel.IContainer components;
 
-		public SplashScreen()
+		public HelpScreen()
 		{
 			//
 			// Required for Windows Form Designer support
 			//
 			InitializeComponent();
-			timer1.Start();
 			//
 			// TODO: Add any constructor code after InitializeComponent call
 			//
@@ -52,9 +49,7 @@ namespace VideoPaintballClient.Screens
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.components = new System.ComponentModel.Container();
             this.label3 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -72,11 +67,6 @@ namespace VideoPaintballClient.Screens
             this.label3.TabIndex = 2;
             this.label3.Text = "Video Paintball";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 3000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label1
             // 
@@ -114,7 +104,7 @@ namespace VideoPaintballClient.Screens
             this.label5.TabIndex = 6;
             this.label5.Text = "SHIFT Key + LEFT/RIGHT Key Changes Avatars Direction";
             // 
-            // SplashScreen
+            // HelpScreen
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
@@ -124,25 +114,15 @@ namespace VideoPaintballClient.Screens
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "SplashScreen";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "HelpScreen";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SplashScreen";
             this.ResumeLayout(false);
             this.PerformLayout();
 
 		}
 		#endregion
-
-		private void timer1_Tick(object sender, System.EventArgs e)
-		{
-			_time++;
-			if(_time == 1)
-			{
-				timer1.Stop();
-				this.Hide();
-			}
-		}
     }
 }

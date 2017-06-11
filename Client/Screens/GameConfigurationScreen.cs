@@ -166,5 +166,18 @@ namespace VideoPaintballClient.Screens
         }
 
         public GameConfiguration GameConfiguration { get; private set; }
-   }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void controlsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (HelpScreen help = new HelpScreen())
+            {
+                help.ShowDialog(this);
+            }
+        }
+    }
 }

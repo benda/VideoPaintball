@@ -13,11 +13,6 @@ namespace VideoPaintballClient
 
         public void Run()
         {
-            using (SplashScreen splashScreen = new SplashScreen())
-            {
-                splashScreen.ShowDialog();
-            }
-
             using (GameConfigurationScreen gameConfigurationScreen = new GameConfigurationScreen(_gameConfiguration))
             {
                 gameConfigurationScreen.ShowDialog();

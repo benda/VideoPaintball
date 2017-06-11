@@ -22,9 +22,7 @@ namespace VideoPaintballCommon.Net
 
         public NetworkCommunicator(TcpClient networkConnection)
         {
-            if (networkConnection == null) throw new ArgumentNullException("networkConnection");
-
-            this._networkConnection = networkConnection;
+            this._networkConnection = networkConnection ?? throw new ArgumentNullException("networkConnection");
         }
 
         public void SendData(string data)

@@ -43,17 +43,15 @@ namespace VideoPaintballServer
 
             Task.Factory.StartNew(() =>
             {
-                ManualResetEvent endOfTurnWait = new ManualResetEvent(false);
-
-                _endOfTurnWaitList.Add(endOfTurnWait);
-
+                ManualResetEvent serverEndOfTurnWait = new ManualResetEvent(false);
+                _endOfTurnWaitList.Add(serverEndOfTurnWait);
                 _playersThatSentDataThisTurnArray = _playersThatSentDataThisTurnList.ToArray();
                 _endOfTurnWaitArray = _endOfTurnWaitList.ToArray();
 
                 //main game loop
                 while (true) //issue [B.2.3] of the design document
                 {
-                    ManualResetEvent.WaitAll(_playersThatSentDataThisTurnArray); //issue [B.2.3] of the design document
+                    WaitHandle.WaitAll(_playersThatSentDataThisTurnArray); //issue [B.2.3] of the design document
 
                     _completeGameState.Update(_currentTurnClientActions); //issue [B.2.8] of the design document
                     foreach (ManualResetEvent ev in _endOfTurnWaitArray)
@@ -62,18 +60,17 @@ namespace VideoPaintballServer
                     }
                     _gameStateProcessed.Set();
 
-
                     foreach (ManualResetEvent ev in _playersThatSentDataThisTurnArray)
                     {
                         ev.Reset();
                     }
 
-                    endOfTurnWait.Set();
-                    ManualResetEvent.WaitAll(_endOfTurnWaitArray); //issue [B.2.3] of the design document
+                    serverEndOfTurnWait.Set();
+                    WaitHandle.WaitAll(_endOfTurnWaitArray); //issue [B.2.3] of the design document
                 }
 
                 _gameStateProcessed.Close();
-                endOfTurnWait.Close();
+                serverEndOfTurnWait.Close();
             });
         }
 
@@ -169,7 +166,7 @@ namespace VideoPaintballServer
 
                     networkCommunicator.SendData(_completeGameState.ToString());
                     endOfTurnWait.Set();
-                    ManualResetEvent.WaitAll(_endOfTurnWaitArray); //issue [B.2.3] of the design document
+                    WaitHandle.WaitAll(_endOfTurnWaitArray); //issue [B.2.3] of the design document
                     _gameStateProcessed.Reset();
                 }
             }
