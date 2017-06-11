@@ -21,7 +21,6 @@ namespace VideoPaintballClient
         public Lobby(GameConfiguration configuration)
         {
             GameConfiguration = configuration;
-            NetworkCommunications = new NetworkCommunicator(GameConfiguration.ServerConnection);
         }
 
         public void Wait()
@@ -38,7 +37,7 @@ namespace VideoPaintballClient
             bool continueToLoop = true;
             while (continueToLoop)
             {
-                data = NetworkCommunications.ReceiveData();
+                data = GameConfiguration.ServerConnection.ReceiveData();
                 if (data.Contains(MessageConstants.PlayerJoined))
                 {
                     data = data.Substring(data.IndexOf(":") + 1);
@@ -50,7 +49,7 @@ namespace VideoPaintballClient
                 }
                 else if (data == MessageConstants.ServerAvailable)
                 {
-                    NetworkCommunications.SendData(MessageConstants.JoinGame);
+                    GameConfiguration.ServerConnection.SendData(MessageConstants.JoinGame);
                 }
 
                 Thread.Sleep(1000);
@@ -65,7 +64,7 @@ namespace VideoPaintballClient
 
         public void StartGame()
         {
-            NetworkCommunications.SendData(MessageConstants.StartGame);
+            GameConfiguration.ServerConnection.SendData(MessageConstants.StartGame);
         }
 
         private delegate void RaiseGameStartingHandler();
@@ -84,12 +83,6 @@ namespace VideoPaintballClient
             PlayerJoinedEventArgs ev = new PlayerJoinedEventArgs();
             ev.PlayerIPAddress = playerIPAddress;
             PlayerJoined(this, ev);
-        }
-
-        public NetworkCommunicator NetworkCommunications
-        {
-            get;
-            private set;
         }
 
         public GameConfiguration GameConfiguration { get; private set; }

@@ -12,7 +12,7 @@ namespace VideoPaintballCommon.Net
     /// <summary>
     /// Issue [B.3.2] of the design document
     /// </summary>
-    public class NetworkCommunicator
+    public class NetworkCommunicator : IDisposable
     {
         private static readonly ILog _log = LogManager.GetLogger(typeof(NetworkCommunicator));
 
@@ -103,6 +103,27 @@ namespace VideoPaintballCommon.Net
         private TcpClient NetworkConnection
         {
             get { return _networkConnection; }
-        }         
+        }
+
+        private bool _disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _networkConnection.GetStream().Close();
+                    _networkConnection.Close();
+                }
+
+                _disposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
     }
 }

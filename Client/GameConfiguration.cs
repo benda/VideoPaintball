@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using VideoPaintballCommon.Net;
 
 namespace VideoPaintballClient
 {
@@ -11,7 +12,7 @@ namespace VideoPaintballClient
     {
         public GameConfiguration() { }
 
-        public TcpClient ServerConnection { get; set; }
+        public NetworkCommunicator ServerConnection { get; set; }
         public IPAddress ServerIPAddress { get;  set; }
         public bool ThisClientIsServer { get; set; }
     }

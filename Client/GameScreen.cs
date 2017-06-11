@@ -23,14 +23,14 @@ namespace VideoPaintballClient
         private ServerCommunicator _serverCommunicator;
         private string _playerAction;
 
-        public GameScreen(TcpClient serverConnection)
+        public GameScreen(NetworkCommunicator serverConnection)
         {
             InitializeComponent();
 
             //issue [B.1.2] of the design document
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);             
             this.Size = new Size((int)DimensionsUtil.GetMapWidth(), (int)DimensionsUtil.GetMapHeight());
-            this.ServerCommunications = new ServerCommunicator(new NetworkCommunicator(serverConnection));
+            this.ServerCommunications = new ServerCommunicator(serverConnection);
         }
 
         //issue [B.1.4] of the design document

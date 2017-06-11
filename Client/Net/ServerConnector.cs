@@ -14,7 +14,7 @@ namespace VideoPaintballClient.Net
     {
         private static readonly ILog _log = LogManager.GetLogger(typeof(Game));
 
-        public static TcpClient ConnectToServer(IPAddress serverAddress)
+        public static NetworkCommunicator ConnectToServer(IPAddress serverAddress)
         {
             _log.InfoFormat("Connecting to server: [{0}]", serverAddress);
 
@@ -46,36 +46,19 @@ namespace VideoPaintballClient.Net
                 }                
             }
 
-            return serverConnection;
+            return new NetworkCommunicator(serverConnection);
         }
 
         public static bool ServerIsHostingGame(IPAddress serverAddress)
         {
-            TcpClient client = null;
             string data = string.Empty;
 
-            try
-            {
-                client = ConnectToServer(serverAddress);
+            using (NetworkCommunicator client = ConnectToServer(serverAddress))
+            { 
                 if (client != null)
                 {
-                    if (client.GetStream().CanRead)
-                    {
-                        int numberOfBytesRead = 0;
-                        byte[] buffer = new byte[1024];
-                        numberOfBytesRead = client.GetStream().Read(buffer, 0, buffer.Length);
-                        data = Encoding.ASCII.GetString(buffer, 0, numberOfBytesRead);
-
-                        buffer = Encoding.ASCII.GetBytes( MessageConstants.CloseConnection + MessageConstants.MessageEndDelimiter );
-                        client.GetStream().Write(buffer, 0, buffer.Length);      
-                    }
-                }
-            }
-            finally
-            {
-                if (client != null)
-                {
-                    client.Close();
+                    data = client.ReceiveData();
+                    client.SendData(MessageConstants.CloseConnection + MessageConstants.MessageEndDelimiter);
                 }
             }
 

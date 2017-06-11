@@ -37,8 +37,7 @@ namespace VideoPaintballClient
         {
             if (_gameConfiguration != null && _gameConfiguration.ServerConnection != null)
             {
-                _gameConfiguration.ServerConnection.GetStream().Close();
-                _gameConfiguration.ServerConnection.Close();
+                _gameConfiguration.ServerConnection.Dispose();
             }
 
             if (_gameScreen != null)
