@@ -42,7 +42,7 @@ namespace VideoPaintballClient.Net
                 }
                 else
                 {
-                    //throw;
+                    throw;
                 }                
             }
 
@@ -56,7 +56,7 @@ namespace VideoPaintballClient.Net
 
             try
             {
-                client = ServerConnector.ConnectToServer(serverAddress);
+                client = ConnectToServer(serverAddress);
                 if (client != null)
                 {
                     if (client.GetStream().CanRead)
@@ -66,7 +66,7 @@ namespace VideoPaintballClient.Net
                         numberOfBytesRead = client.GetStream().Read(buffer, 0, buffer.Length);
                         data = Encoding.ASCII.GetString(buffer, 0, numberOfBytesRead);
 
-                        buffer = System.Text.Encoding.ASCII.GetBytes( MessageConstants.CloseConnection + MessageConstants.MessageEndDelimiter );
+                        buffer = Encoding.ASCII.GetBytes( MessageConstants.CloseConnection + MessageConstants.MessageEndDelimiter );
                         client.GetStream().Write(buffer, 0, buffer.Length);      
                     }
                 }
