@@ -48,8 +48,6 @@ namespace VideoPaintballClient
           
             //issue [B.1.4] of the design document
             this.Invalidate();
-
-            Thread.Sleep(100);
         }
 
         //issue [B.1.5] of the design document
