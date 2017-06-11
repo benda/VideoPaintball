@@ -14,6 +14,8 @@ namespace VideoPaintballCommon.Net
 
         public static IPAddress GetLocalIpAddress()
         {
+            return IPAddress.Parse("127.0.0.1"); //TODO: using loopback fixes sync issues when going over LAN, loopback shouldn't be necessary
+
             IPAddress address = null;
 
             foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())

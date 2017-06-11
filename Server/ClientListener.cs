@@ -36,7 +36,6 @@ namespace VideoPaintballServer
             try
             {
                 int port = IPUtil.DefaultPort;
-                // server = new TcpListener(IPAddress.Parse("127.0.0.1"), port);
                 listener = new TcpListener(IPUtil.GetLocalIpAddress(), port);
                 listener.Start();
 
