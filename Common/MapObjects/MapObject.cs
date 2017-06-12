@@ -39,7 +39,8 @@ namespace VideoPaintballCommon.MapObjects
         {
             serializer.AppendProperty(Location.X);
             serializer.AppendProperty(Location.Y);
+            serializer.AppendProperty(Size.Width);
+            serializer.AppendProperty(Size.Height);
         }
-    
     }
 }

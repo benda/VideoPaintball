@@ -9,6 +9,11 @@ namespace VideoPaintballCommon.MapObjects
     {
         StringBuilder _serialized = new StringBuilder();
 
+        public MapObjectSerializer(StringBuilder serialized)
+        {
+            _serialized = serialized;
+        }
+
         public void AppendProperty(object value)
         {
             _serialized.Append(value);

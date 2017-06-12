@@ -96,20 +96,23 @@ namespace VideoPaintballCommon
         {
             float locationX = float.Parse(mapObjectItems[1]);
             float locationY = float.Parse(mapObjectItems[2]);
-      
-            return new PaintballHit(new PointF(locationX, locationY));
+            int renderTimes = int.Parse(mapObjectItems[5]);
+
+            return new PaintballHit(new PointF(locationX, locationY), renderTimes);
         }
 
-        private static void SerializePaintballHit(PaintballHit ph, StringBuilder serialized)
+        public static void SerializePaintballHit(PaintballHit ph, StringBuilder serialized)
         {
             serialized.Append("<ph,");
-            serialized.Append(ph.Location.X.ToString());
+            serialized.Append(ph.Location.X);
             serialized.Append(",");
-            serialized.Append(ph.Location.Y.ToString());
+            serialized.Append(ph.Location.Y);
             serialized.Append(",");
-            serialized.Append(ph.Size.Width.ToString());
+            serialized.Append(ph.Size.Width);
             serialized.Append(",");
-            serialized.Append(ph.Size.Height.ToString());
+            serialized.Append(ph.Size.Height);
+            serialized.Append(",");
+            serialized.Append(ph.RenderTimes);
             serialized.Append(">");
         }
     }

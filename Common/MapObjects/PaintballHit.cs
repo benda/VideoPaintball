@@ -12,11 +12,13 @@ namespace VideoPaintballCommon.MapObjects
         private int MaxRenderTimes = 20;
         private int HalfMaxRenderTimes = 10;
 
-        public PaintballHit(PointF location) : base(location)
+        public PaintballHit(PointF location, int renderTimes) : base(location)
         {
-            RenderTimes = 0;          
+            RenderTimes = renderTimes;
         }
-        
+
+        public bool ShouldRemove { get { return RenderTimes > MaxRenderTimes; } }
+
         public void Render(Graphics graphics)
         {
             if (RenderTimes <= MaxRenderTimes)
@@ -30,8 +32,6 @@ namespace VideoPaintballCommon.MapObjects
                 {
                     graphics.DrawEllipse(pen, Location.X, Location.Y, MaxRenderTimes - RenderTimes, MaxRenderTimes - RenderTimes);
                 }
-
-                RenderTimes++;
             }            
         }
     }

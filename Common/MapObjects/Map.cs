@@ -7,11 +7,14 @@ using VideoPaintballCommon.VPP;
 using VideoPaintballCommon.Detectors;
 using VideoPaintballCommon.Util;
 using VideoPaintballCommon;
+using log4net;
 
 namespace VideoPaintballCommon.MapObjects
 {
     public class Map
     {
+        private static readonly ILog _log = LogManager.GetLogger(typeof(Map));
+
         private Dictionary<string, Player> _players = new Dictionary<string, Player>();
         private List<Paintball> _paintballs = new List<Paintball>();
         private List<Berry> _berries = new List<Berry>();
@@ -53,12 +56,18 @@ namespace VideoPaintballCommon.MapObjects
             {
                 obstacle.Render(graphics);
             }
+
+            foreach(PaintballHit ph in PaintballHits)
+            {
+                ph.Render(graphics);
+            }
         }
 
         public void StartNewGame(List<PlayerAction> playerActions)
         {
             Obstacles.Clear();
             Paintballs.Clear();
+            PaintballHits.Clear();
 
             Map map = MapLoader.LoadRandomMap();
             Obstacles = map.Obstacles;
@@ -230,6 +239,21 @@ namespace VideoPaintballCommon.MapObjects
                 paintball.Move();
             }
 
+            List<PaintballHit> paintballHitsToRemove = new List<PaintballHit>();
+            foreach (PaintballHit ph in PaintballHits)
+            {
+                if (ph.ShouldRemove)
+                {
+                    paintballHitsToRemove.Add(ph);
+                }
+
+                ph.RenderTimes++;
+            }
+
+            foreach (PaintballHit ph in paintballHitsToRemove)
+            {
+                PaintballHits.Remove(ph);
+            }
 
             //detect and record collisions between paintballs and players
             //issue [B.2.6] of the design document
@@ -279,6 +303,7 @@ namespace VideoPaintballCommon.MapObjects
                             wasCollision = true;
                             player.RecordPaintballHit();
                             _paintballsToRemove.Add(paintball);
+                            PaintballHits.Add(new PaintballHit(paintball.Location,0));
                         }
 
                         if (wasCollision)
@@ -309,15 +334,12 @@ namespace VideoPaintballCommon.MapObjects
                 }
             }
 
-
-
             //remove paintballs that hit players, obstacles or went offscreen
             foreach (Paintball paintball in _paintballsToRemove)
             {
                 Paintballs.Remove(paintball);
             }
             _paintballsToRemove.Clear();
-
 
 
             //don't allow players to move over other players or over obstacles, or off-screen
@@ -425,6 +447,14 @@ namespace VideoPaintballCommon.MapObjects
             foreach (Obstacle obstacle in Obstacles)
             {
                 serialized.Append(obstacle.ToString());
+            }
+
+            MapObjectSerializer mos = new MapObjectSerializer(serialized);
+
+            foreach(PaintballHit ph in PaintballHits)
+            {
+                MapParser.SerializePaintballHit(ph, serialized);
+//                ph.Serialize(mos);
             }
 
             return serialized.ToString();
